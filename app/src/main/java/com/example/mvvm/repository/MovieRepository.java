@@ -45,6 +45,29 @@ public class MovieRepository {
                 R.drawable.movie_bojack,
                 Color.rgb(173, 137, 239)
         ));
+        movies.add(new Movie(
+                "Interstellar",
+                "Sci-Fi / Drama",
+                8.7,
+                R.drawable.movie_interstellar,
+                Color.rgb(65, 90, 135)
+        ));
+
+        movies.add(new Movie(
+                "Inception",
+                "Sci-Fi / Action",
+                8.8,
+                R.drawable.movie_inception,
+                Color.rgb(85, 120, 150)
+        ));
+
+        movies.add(new Movie(
+                "The Dark Knight",
+                "Action / Crime",
+                9.0,
+                R.drawable.movie_dark_knight,
+                Color.rgb(70, 75, 95)
+        ));
 
 
 
