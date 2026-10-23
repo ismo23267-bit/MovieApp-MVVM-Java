@@ -20,7 +20,7 @@ import android.os.Handler;
 import android.os.Looper;
 public class MovieListFragment extends Fragment {
 
-    private FragmentMovieListBinding binding;
+    private FragmentMovieListBinding binding; 
     private MovieViewModel viewModel;
     private MovieAdapter adapter;
 
