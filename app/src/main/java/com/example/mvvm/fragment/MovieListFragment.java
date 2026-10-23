@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.mvvm.adapter.MovieAdapter;
 import com.example.mvvm.databinding.FragmentMovieListBinding;
 import com.example.mvvm.viewmodel.MovieViewModel;
-
+import com.example.mvvm.R;
 public class MovieListFragment extends Fragment {
 
     private FragmentMovieListBinding binding;
@@ -43,7 +43,20 @@ public class MovieListFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        adapter = new MovieAdapter();
+        adapter = new MovieAdapter(position -> {
+
+            MovieDetailFragment detailFragment =
+                    MovieDetailFragment.newInstance(position);
+
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(
+                            R.id.fragmentContainer,
+                            detailFragment
+                    )
+                    .addToBackStack(null)
+                    .commit();
+        });
 
         binding.recyclerViewMovies.setLayoutManager(
                 new LinearLayoutManager(requireContext())
@@ -51,7 +64,7 @@ public class MovieListFragment extends Fragment {
 
         binding.recyclerViewMovies.setAdapter(adapter);
 
-        viewModel = new ViewModelProvider(this)
+        viewModel = new ViewModelProvider(requireActivity())
                 .get(MovieViewModel.class);
 
         viewModel.getMovies().observe(
