@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
 
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
-    android:layout_marginBottom="12dp"
+    android:layout_height="155dp"
+    android:layout_marginBottom="14dp"
     android:padding="12dp"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:background="#83B8E9">
+    android:background="@drawable/bg_movie_card"
+    android:elevation="3dp">
 
     <ImageView
         android:id="@+id/imgMovie"
-        android:layout_width="85dp"
-        android:layout_height="115dp"
+        android:layout_width="92dp"
+        android:layout_height="130dp"
         android:scaleType="centerCrop"
         android:contentDescription="Movie poster"
         android:src="@drawable/ic_launcher_foreground" />
@@ -22,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="14dp"
         android:orientation="vertical">
 
         <TextView
@@ -30,18 +31,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Movie Title"
-            android:textColor="#FFFFFF"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:maxLines="2" />
+            android:textColor="#FFFFFF"
+            android:maxLines="3"
+            android:ellipsize="end" />
 
         <TextView
             android:id="@+id/tvMovieGenre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Action"
-            android:textColor="#FFFFFF"
             android:textSize="13sp"
+            android:textColor="#FFFFFF"
             android:layout_marginTop="8dp" />
 
         <TextView
@@ -49,8 +51,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="★ 8.6"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFE76C"
             android:layout_marginTop="8dp" />
 
     </LinearLayout>

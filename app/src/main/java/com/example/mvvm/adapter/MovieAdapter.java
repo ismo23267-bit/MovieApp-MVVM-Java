@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mvvm.databinding.ItemMovieBinding;
 import com.example.mvvm.model.Movie;
+import android.graphics.drawable.GradientDrawable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,10 +46,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         );
 
         holder.binding.imgMovie.setImageResource(movie.getImage());
+        GradientDrawable background =
+                (GradientDrawable) holder.binding
+                        .getRoot()
+                        .getBackground()
+                        .mutate();
 
-        holder.binding.getRoot().setBackgroundColor(
-                movie.getBackgroundColor()
-        );
+        background.setColor(movie.getBackgroundColor());
     }
 
     @Override
