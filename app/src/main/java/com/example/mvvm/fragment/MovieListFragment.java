@@ -16,6 +16,8 @@ import com.example.mvvm.adapter.MovieAdapter;
 import com.example.mvvm.databinding.FragmentMovieListBinding;
 import com.example.mvvm.viewmodel.MovieViewModel;
 import com.example.mvvm.R;
+import android.os.Handler;
+import android.os.Looper;
 public class MovieListFragment extends Fragment {
 
     private FragmentMovieListBinding binding;
@@ -75,13 +77,57 @@ public class MovieListFragment extends Fragment {
                     }
                 }
         );
+        viewModel.getCurrentMonth().observe(
+                getViewLifecycleOwner(),
+                month -> binding.tvMonth.setText(month)
+        );
+
+        viewModel.getCurrentDate().observe(
+                getViewLifecycleOwner(),
+                date -> binding.tvCurrentDate.setText(date)
+        );
+
+        viewModel.getCurrentTime().observe(
+                getViewLifecycleOwner(),
+                time -> binding.tvCurrentTime.setText(time)
+        );
+        clockHandler.removeCallbacks(clockRunnable);
+        clockHandler.post(clockRunnable);
     }
 
     @Override
     public void onDestroyView() {
+        clockHandler.removeCallbacks(clockRunnable);
         binding.recyclerViewMovies.setAdapter(null);
         adapter = null;
         binding = null;
         super.onDestroyView();
+    }
+    private final Handler clockHandler =
+            new Handler(Looper.getMainLooper());
+
+    private final Runnable clockRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (binding != null && viewModel != null) {
+                viewModel.updateDateTime();
+                clockHandler.postDelayed(this, 1000);
+            }
+        }
+    };
+    @Override
+    public void onStop() {
+        clockHandler.removeCallbacks(clockRunnable);
+        super.onStop();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (binding != null && viewModel != null) {
+            clockHandler.removeCallbacks(clockRunnable);
+            clockHandler.post(clockRunnable);
+        }
     }
 }
